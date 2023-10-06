@@ -43,7 +43,7 @@ public class MyMenu {
                     action = SCANER.nextInt();
                 }
                 case 3 -> {
-                    СaesarСipher chip = new СaesarСipher();
+                    CaesarСipher chip = new CaesarСipher();
                     String text = "Привет мир";
                     System.out.println("Пример текста: " + text);
                     System.out.println("Дэфолтный ключ: " + chip.getKey());
@@ -206,7 +206,7 @@ public class MyMenu {
 
     private void action() throws IOException {
         IOText ioText = new IOText();
-        СaesarСipher cipher = this.currentKey == 0 ? new СaesarСipher() : new СaesarСipher(this.currentKey);
+        CaesarСipher cipher = this.currentKey == 0 ? new CaesarСipher() : new CaesarСipher(this.currentKey);
         String result = "";
         String text = "";
         if (this.selectedInput.equals(this.INPUT_CONSOLE)) {
