@@ -2,50 +2,50 @@ package com.javarush.cryptanalyzer.abzon.models;
 
 import com.javarush.cryptanalyzer.abzon.structure.CryptoAnalyzerAlphabet;
 
-public class СaesarСipher {
+public class CaesarСipher {
     private int key = 3;
 
-    public СaesarСipher(int key) {
+    public CaesarСipher(int key) {
         this.key = key;
     }
 
-    public СaesarСipher() {
+    public CaesarСipher() {
 
     }
 
-    public String encrypt(String textFoCript) {
+    public String encrypt(String textFoCrypt) {
         String result = "";
-        for (int i = 0; i < textFoCript.length(); i++) {
+        for (int i = 0; i < textFoCrypt.length(); i++) {
             //получение текущего символа в тексте для шифрования
-            char currentSymvol = textFoCript.charAt(i);
+            char currentSymbol = textFoCrypt.charAt(i);
             // получение индекса символа с алфавита со здвигом в ключ
-            int criptoindex = CryptoAnalyzerAlphabet.ALPHABET.indexOf(currentSymvol) + this.key;
+            int cryptoIndex = CryptoAnalyzerAlphabet.ALPHABET_UA.indexOf(currentSymbol) + this.key;
             // проверка что бы не было выхода за приделы алфавита
-            if (criptoindex >= CryptoAnalyzerAlphabet.ALPHABET.length()) {
+            if (cryptoIndex >= CryptoAnalyzerAlphabet.ALPHABET_UA.length()) {
                 // если выход есть смещаемся на начало алфавита
-                result += CryptoAnalyzerAlphabet.ALPHABET.charAt(criptoindex - CryptoAnalyzerAlphabet.ALPHABET.length());
+                result += CryptoAnalyzerAlphabet.ALPHABET_UA.charAt(cryptoIndex - CryptoAnalyzerAlphabet.ALPHABET_UA.length());
             } else {
                 //если выхода нет получаем символ со смещением
-                result += CryptoAnalyzerAlphabet.ALPHABET.charAt(criptoindex);
+                result += CryptoAnalyzerAlphabet.ALPHABET_UA.charAt(cryptoIndex);
             }
         }
         return result;
     }
 
-    public String decrypt(String decodingTextFoCript) {
+    public String decrypt(String decodingTextFoCrypt) {
         String result = "";
-        for (int i = 0; i < decodingTextFoCript.length(); i++) {
+        for (int i = 0; i < decodingTextFoCrypt.length(); i++) {
             //получение текущего символа в тексте для шифрования
-            char currentSymvol = decodingTextFoCript.charAt(i);
+            char currentSymbol = decodingTextFoCrypt.charAt(i);
             // получение индекса символа с алфавита с обратным здвигом в ключ
-            int criptoindex = CryptoAnalyzerAlphabet.ALPHABET.indexOf(currentSymvol) - this.key;
+            int cryptoIndex = CryptoAnalyzerAlphabet.ALPHABET_UA.indexOf(currentSymbol) - this.key;
             // проверка что бы не было выхода за приделы алфавита
-            if (criptoindex < 0) {
+            if (cryptoIndex < 0) {
                 // если выход есть смещаемся на начало алфавита
-                result += CryptoAnalyzerAlphabet.ALPHABET.charAt(criptoindex + CryptoAnalyzerAlphabet.ALPHABET.length());
+                result += CryptoAnalyzerAlphabet.ALPHABET_UA.charAt(cryptoIndex + CryptoAnalyzerAlphabet.ALPHABET_UA.length());
             } else {
                 //если выхода нет получаем символ со смещением
-                result += CryptoAnalyzerAlphabet.ALPHABET.charAt(criptoindex);
+                result += CryptoAnalyzerAlphabet.ALPHABET_UA.charAt(cryptoIndex);
             }
         }
         return result;
@@ -58,7 +58,7 @@ public class СaesarСipher {
     public String bruteForce(String text) {
         String result = "";
         String endl = System.getProperty("line.separator");
-        for (int i = 1; i <= CryptoAnalyzerAlphabet.ALPHABET.length(); i++) {
+        for (int i = 1; i <= CryptoAnalyzerAlphabet.ALPHABET_UA.length(); i++) {
             this.key = i;
             result += (" key " + i + " " + this.decrypt(text) + endl);
         }
